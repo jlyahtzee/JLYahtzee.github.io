@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yahtzee!</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+        <h1>JL Yahtzee</h1>
+        <h2>at least its two players now but other stuff is broken and i could only figure out this two table way for now</h2>
+        <h3>coding is too frustrating</h3>
+    <div id="game-container">
+
+        <h2 id="turn-text">Player 1's Turn</h2>
+
+        <!-- Dice Section -->
+        <div id="dice-container">
+            <button class="die">x</button>
+            <button class="die">x</button>
+            <button class="die">x</button>
+            <button class="die">x</button>
+            <button class="die">x</button>
+        </div>
+
+        <button id="roll-dice">Roll Dice</button>
+
+        <!-- PLAYER 1 -->
+        <div class="player" id="player1" style="display: inline-block; vertical-align: top; margin-right: 20px; " >
+            <h3>Player 1</h3>
+            <table class="scorecard">
+                <tr><th>Category</th><th>Score</th></tr>
+                <tr><td>Ones</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Twos</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Threes</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Fours</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Fives</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Sixes</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Three of a kind</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Four of a kind</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Full house</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Small straight</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Large straight</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Yahtzee</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Chance</td><td><button class="score-btn">0</button></td></tr>
+            </table>
+        </div>
+
+        <!-- PLAYER 2 -->
+        <div class="player" id="player2" style="display: inline-block; vertical-align: top; margin-right: 20px; ">
+            <h3>Player 2</h3>
+            <table class="scorecard">
+                <tr><th>Category</th><th>Score</th></tr>
+                <tr><td>Ones</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Twos</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Threes</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Fours</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Fives</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Sixes</td><td class="lowerScore"><button class="score-btn">0</button></td></tr>
+                <tr><td>Three of a kind</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Four of a kind</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Full house</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Small straight</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Large straight</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Yahtzee</td><td><button class="score-btn">0</button></td></tr>
+                <tr><td>Chance</td><td><button class="score-btn">0</button></td></tr>
+            </table>
+        </div>
+
+        <div>
+            Player 1 Score: <span id="score1">0</span> |
+            Player 2 Score: <span id="score2">0</span>
+        </div>
+
+        <button id="reset">Play again</button>
+    </div>
+
+    <script src="yahtzee.js"></script>
+</body>
+</html>
