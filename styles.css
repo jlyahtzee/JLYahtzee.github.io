@@ -1,0 +1,30 @@
+.clicked {
+    background: lightblue;
+}
+
+.endGame {
+    background: rgb(127, 202, 127);
+}
+
+#players-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px; /* space between boards */
+    margin-top: 20px;
+}
+
+.player {
+    width: 300px;
+}
+
+.scorecard {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.scorecard td, .scorecard th {
+    border: 1px solid black;
+    padding: 6px;
+    text-align: center;
+}
