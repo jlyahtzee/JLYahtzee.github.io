@@ -5,7 +5,7 @@
 
 // Configuration
 const CONFIG = {
-    WEBSOCKET_URL: 'wss://your-websocket-server.com', // Replace with your WebSocket server URL
+    WEBSOCKET_URL: 'wss://loshyahtzee-github-io.onrender.com', // Replace with your WebSocket server URL
     MAX_PLAYERS: 3,
     ROLLS_PER_TURN: 3,
     CATEGORIES: [
