@@ -21,9 +21,7 @@ const CustomEvents = {
                 return eventData.category === 'yahtzee' && eventData.score === 50;
             },
             messages: [
-                "I can't believe you've done this! 🎉",
-                "YAHTZEE! Absolutely legendary! 🎲",
-                "Five of a kind?! Show off! 😎"
+                "Mate, I can't believe you've done this!",
             ],
             selection: "random" // or 0, 1, 2 for specific message
         },
@@ -36,8 +34,7 @@ const CustomEvents = {
                 return eventData.totalScore > 300;
             },
             messages: [
-                "Over 300 points already?! 🔥",
-                "{{player}} is absolutely dominating with {{totalScore}} points! 💪"
+                "Mate, this is suck bullshit"
             ],
             selection: "random"
         },
@@ -50,8 +47,7 @@ const CustomEvents = {
                 return eventData.upperSectionTotal > 55;
             },
             messages: [
-                "Upper section total: {{upperSectionTotal}}! That's insane! 🎯",
-                "How did you get {{upperSectionTotal}} in the upper section?! 😱"
+                "{{upperSectionTotal}}? Mate, I think you're getting your bonus FFS",
             ],
             selection: "random"
         },
@@ -64,8 +60,7 @@ const CustomEvents = {
                 return eventData.yahtzeeCount === 2;
             },
             messages: [
-                "A SECOND YAHTZEE?! What are the odds?! 🤯",
-                "{{player}} just got their 2nd Yahtzee! Unbelievable! 🎊"
+                "Mate, I can't believe you've done this!",
             ],
             selection: "random"
         },
@@ -85,34 +80,6 @@ const CustomEvents = {
             selection: "random"
         },
 
-        // Example 6: Large straight
-        {
-            name: "large_straight",
-            enabled: true,
-            condition: (eventData) => {
-                return eventData.category === 'large_straight' && eventData.score === 40;
-            },
-            messages: [
-                "Perfect straight! 🎯",
-                "1-2-3-4-5 or 2-3-4-5-6... beautiful! ✨"
-            ],
-            selection: "random"
-        },
-
-        // Example 7: Full house
-        {
-            name: "full_house",
-            enabled: true,
-            condition: (eventData) => {
-                return eventData.category === 'full_house' && eventData.score === 25;
-            },
-            messages: [
-                "Full house! 🏠",
-                "Three and two... perfection! 🎭"
-            ],
-            selection: "random"
-        },
-
         // Example 8: Very high single category score (like 30 in sixes)
         {
             name: "high_single_score",
@@ -128,20 +95,6 @@ const CustomEvents = {
             selection: "random"
         },
 
-        // Example 9: Player takes the lead
-        {
-            name: "takes_lead",
-            enabled: true,
-            condition: (eventData) => {
-                return eventData.tookLead === true;
-            },
-            messages: [
-                "{{player}} takes the lead! 🥇",
-                "We have a new leader! 👑"
-            ],
-            selection: "random"
-        },
-
         // Example 10: Close game at the end
         {
             name: "close_game",
@@ -151,7 +104,6 @@ const CustomEvents = {
             },
             messages: [
                 "Only {{margin}} points apart! What a game! 😱",
-                "That was nail-bitingly close! 🤏"
             ],
             selection: "random"
         },
@@ -170,21 +122,6 @@ const CustomEvents = {
             selection: "random"
         },
 
-        // Example 12: First roll of the game
-        {
-            name: "first_roll",
-            enabled: true,
-            triggerOnce: true, // Only trigger once per game
-            condition: (eventData) => {
-                return eventData.isFirstRoll === true;
-            },
-            messages: [
-                "Let the games begin! 🎮",
-                "And they're off! 🏁"
-            ],
-            selection: "random"
-        },
-
         // Example 13: Final category
         {
             name: "final_category",
@@ -193,8 +130,8 @@ const CustomEvents = {
                 return eventData.categoriesRemaining === 1;
             },
             messages: [
-                "Final category! Make it count! 🎯",
-                "This is it - last chance! 💫"
+                "Final category! Make it count! ",
+                "This is it - last chance!"
             ],
             selection: "random"
         },
@@ -204,7 +141,7 @@ const CustomEvents = {
             name: "bob_yahtzee",
             enabled: true,
             condition: (eventData) => {
-                return eventData.player === "Bob" && 
+                return eventData.player === "X" && 
                        eventData.category === 'yahtzee' && 
                        eventData.score === 50;
             },
