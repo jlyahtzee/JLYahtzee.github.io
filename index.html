@@ -87,6 +87,16 @@
             <div id="lobby-actions" class="lobby-actions">
                 <div class="lobby-section">
                     <h3>Create Room</h3>
+                    <!-- Player Count Selector for Online -->
+                    <div class="player-count-selector">
+                        <label>Number of Players:</label>
+                        <div class="player-count-buttons">
+                            <button class="count-btn online-count-btn" data-count="1">1</button>
+                            <button class="count-btn online-count-btn" data-count="2">2</button>
+                            <button class="count-btn online-count-btn active" data-count="3">3</button>
+                            <button class="count-btn online-count-btn" data-count="4">4</button>
+                        </div>
+                    </div>
                     <div class="input-group">
                         <input type="text" id="player-name" class="player-input" placeholder="Your Name" maxlength="12">
                         <button class="primary-btn" id="create-room-btn">Create Room</button>
@@ -110,9 +120,9 @@
                     <button class="copy-btn" id="copy-code-btn">Copy Code</button>
                 </div>
                 <div class="players-waiting">
-                    <h4>Players in Room:</h4>
+                    <h4>Players in Room: <span id="room-player-count">0/3</span></h4>
                     <div id="players-list" class="players-list"></div>
-                    <div class="waiting-message">Waiting for players... (Need 3 players to start)</div>
+                    <div class="waiting-message" id="waiting-message">Waiting for players...</div>
                 </div>
                 <button class="secondary-btn" id="leave-room-btn">Leave Room</button>
             </div>

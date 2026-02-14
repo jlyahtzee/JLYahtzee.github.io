@@ -5,7 +5,7 @@
 
 // Configuration
 const CONFIG = {
-    WEBSOCKET_URL: 'wss://loshyahtzee-github-io.onrender.com', // Replace with your WebSocket server URL
+    WEBSOCKET_URL: 'wss://your-websocket-server.com', // Replace with your WebSocket server URL
     MAX_PLAYERS: 3,
     ROLLS_PER_TURN: 3,
     CATEGORIES: [
@@ -255,13 +255,28 @@ function handleWebSocketMessage(message) {
 // ONLINE LOBBY HANDLERS
 // ============================================================
 
+// Online player count selector
+let selectedOnlinePlayerCount = 3;
+let currentRoomMaxPlayers = 3;
+
+document.querySelectorAll('.online-count-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.online-count-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedOnlinePlayerCount = parseInt(btn.dataset.count);
+    });
+});
+
 document.getElementById('create-room-btn').addEventListener('click', () => {
     const playerName = document.getElementById('player-name').value.trim();
     if (!playerName) {
         alert('Please enter your name');
         return;
     }
-    sendWebSocketMessage('create_room', { playerName });
+    sendWebSocketMessage('create_room', { 
+        playerName,
+        maxPlayers: selectedOnlinePlayerCount 
+    });
 });
 
 document.getElementById('join-room-btn').addEventListener('click', () => {
@@ -295,31 +310,34 @@ function handleRoomCreated(message) {
     game.roomCode = message.roomCode;
     game.playerId = message.playerId;
     game.isHost = true;
+    currentRoomMaxPlayers = message.maxPlayers || 3;
     
     document.getElementById('lobby-actions').style.display = 'none';
     document.getElementById('room-view').style.display = 'block';
     document.getElementById('display-room-code').textContent = message.roomCode;
     
-    updatePlayersList(message.players);
+    updatePlayersList(message.players, currentRoomMaxPlayers);
 }
 
 function handleRoomJoined(message) {
     game.roomCode = message.roomCode;
     game.playerId = message.playerId;
     game.isHost = false;
+    currentRoomMaxPlayers = message.maxPlayers || 3;
     
     document.getElementById('lobby-actions').style.display = 'none';
     document.getElementById('room-view').style.display = 'block';
     document.getElementById('display-room-code').textContent = message.roomCode;
     
-    updatePlayersList(message.players);
+    updatePlayersList(message.players, currentRoomMaxPlayers);
 }
 
 function handlePlayerJoined(message) {
-    updatePlayersList(message.players);
+    currentRoomMaxPlayers = message.maxPlayers || 3;
+    updatePlayersList(message.players, currentRoomMaxPlayers);
     
-    // Auto-start game when we have 3 players
-    if (message.players.length === CONFIG.MAX_PLAYERS) {
+    // Auto-start game when we have enough players
+    if (message.players.length === currentRoomMaxPlayers) {
         setTimeout(() => {
             if (game.isHost) {
                 sendWebSocketMessage('start_game', { roomCode: game.roomCode });
@@ -329,14 +347,25 @@ function handlePlayerJoined(message) {
 }
 
 function handlePlayerLeft(message) {
-    updatePlayersList(message.players);
+    updatePlayersList(message.players, currentRoomMaxPlayers);
 }
 
-function updatePlayersList(players) {
+function updatePlayersList(players, maxPlayers = 3) {
     const playersList = document.getElementById('players-list');
+    const playerCount = document.getElementById('room-player-count');
+    const waitingMessage = document.getElementById('waiting-message');
+    
     playersList.innerHTML = players.map(p => 
         `<div class="player-item">${p.name} ${p.id === game.playerId ? '(You)' : ''}</div>`
     ).join('');
+    
+    playerCount.textContent = `${players.length}/${maxPlayers}`;
+    
+    if (players.length < maxPlayers) {
+        waitingMessage.textContent = `Waiting for ${maxPlayers - players.length} more player${maxPlayers - players.length === 1 ? '' : 's'}...`;
+    } else {
+        waitingMessage.textContent = 'Starting game...';
+    }
 }
 
 function handleGameStart(message) {
